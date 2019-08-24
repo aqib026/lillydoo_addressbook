@@ -23,3 +23,23 @@ php bin/console server:start
 php ./vendor/phpunit/phpunit/phpunit tests/AppBundle/Controller/AddressBookControllerTest.php
 
 ```
+
+##Window Virtual Host Setting
+
+
+```
+<VirtualHost *:80>
+    DocumentRoot "directory-where-code-is-checkout/web/"
+    ServerName servername-of-your-choice.loc
+    ServerAlias www.servername-of-your-choice.loc
+    DirectoryIndex /app_dev.php
+    <Directory directory-where-code-is-checkout/web/>
+        AllowOverride None
+        Order Allow,Deny
+        Allow from All
+
+        FallbackResource /app_dev.php
+    </Directory>
+
+</VirtualHost>
+```
