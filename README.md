@@ -43,3 +43,8 @@ php ./vendor/phpunit/phpunit/phpunit tests/AppBundle/Controller/AddressBookContr
 
 </VirtualHost>
 ```
+
+
+## to make DataBase Run the command 
+
+php bin/console doctrine:schema:update --force
