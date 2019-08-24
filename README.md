@@ -9,8 +9,8 @@ PHP version required is 7.2
 ## Project setup & running
 
 ```
-git clone git@github.com:aqib026/address_book.git
-cd address_book
+git clone https://github.com/aqib026/lillydoo_addressbook.git
+cd lillydoo_addressbook
 composer install
 php bin/console server:start
 ```
@@ -24,7 +24,7 @@ php ./vendor/phpunit/phpunit/phpunit tests/AppBundle/Controller/AddressBookContr
 
 ```
 
-##Window Virtual Host Setting
+##Window Virtual Host Setting , in case you use apache server 
 
 
 ```
