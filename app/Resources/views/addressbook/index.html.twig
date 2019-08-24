@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Address Book Records {% endblock %}
+{% block body %}
+    
+    <h2 class="page-header">Latest Address Book Records</h2>
+
+    <table class="table table-stripped">
+    	<thead>
+    		<tr>
+    			<th>#</th>
+    			<th>Name</th>
+    			<th>Email Address</th>
+    			<th>Phone</th>
+    			<th>Address</th>
+    			<th>&nbsp;</th>
+    		</tr>
+    	</thead>
+
+    	<tbody>
+    		{% for rec in records %}
+	    		<tr>
+	    			<td>{{rec.id}}</td>
+	    			<td>{{rec.firstname}} {{rec.lastname}}</td>
+	    			<td>{{rec.emailaddress}}</td>
+	    			<td>{{rec.phonenumber}}</td>
+	    			<td>
+	    				<a href="{{ path('addressbook_view',{ 'id': rec.id }) }}" class="btn btn-primary">view</a>
+	    				<a href="{{ path('addressbook_edit',{ 'id': rec.id }) }}" class="btn btn-info">edit</a>
+	    				<a href="{{ path('addressbook_delete',{ 'id': rec.id }) }}" class="btn btn-danger" onclick="return confirm('are you sure you want to delete this record?')">delete</a>
+	    			</td>
+	    		</tr>
+    		{% endfor %}
+    	</tbody>
+    </table>
+
+{% endblock %}

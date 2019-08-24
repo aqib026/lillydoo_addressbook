@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+     <a href="/address-book" class="btn btn-link">Back To Address Book Listing</a> 
+    <div class="row">
+   
+    <br />
+    <div class="col-md-6">
+    	<ul class="list-group">
+    		<li class="list-group-item"><span>First Name :</span>  {{ record.firstname }}</li>
+    		<li class="list-group-item"><span>Last Name  :</span> {{ record.lastname }}</li>
+    		<li class="list-group-item"><span>Street #   :</span> {{ record.streetNum }}</li>
+    		<li class="list-group-item"><span>Zip        :</span> {{ record.zip }}</li>
+    		<li class="list-group-item"><span>City       :</span> {{ record.city }}</li>
+    		<li class="list-group-item"><span>Country    :</span> {{ record.country }}</li>
+    		<li class="list-group-item"><span>Phone #    :</span> {{ record.phonenumber }}</li>
+    		<li class="list-group-item"><span>Email      :</span> {{ record.emailaddress }}</li>
+    		<li class="list-group-item"><span>Birthday   :</span> {{ record.birthday|date('Y-m-d') }}</li>
+    	</ul>
+    </div>
+
+    <div class="col-md-4">
+    {% if(record.picture != '') %}
+        <img src="{{ asset('uploads/' ~ record.picture) }}" style="max-width:350px;/>
+    {% endif %}
+    </div>
+
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+	.list-group-item span { width: 120px; display: inline-block; margin-right:15px; }
+</style>
+{% endblock %}
