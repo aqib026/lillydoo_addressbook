@@ -35,22 +35,9 @@ class AddressbookController extends Controller
 
         if ( $form->isSubmitted() && $form->isValid()  ) {
 
-            $addressbook = $form->getData();
+            $record = $this->getDoctrine()->getRepository('AppBundle:AddressBook')->save($addressbook,$fileUploader);
 
-            $pictureFile = $form['picture']->getData();
-
-            if ($pictureFile) {
-                $newFilename = $fileUploader->upload($pictureFile);
-                $addressbook->setPicture($newFilename);
-            }
-
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($addressbook);
-
-            $em->flush();
-
-            $this->addFlash('notice','Address Book Record Added !');
+            $this->addFlash('notice', 'Address Book Record Added !');                
 
             return $this->redirectToRoute('addressbook_list');
         }
@@ -76,21 +63,7 @@ class AddressbookController extends Controller
 
         if ( $form->isSubmitted() && $form->isValid()  ) {
 
-            $addressbook = $form->getData();
-
-            $pictureFile = $form['picture']->getData();
-
-            if ($pictureFile) {
-                $newFilename = $fileUploader->upload($pictureFile);
-                $addressbook->setPicture($newFilename);
-            }else{
-               $addressbook->setPicture($file);
-            }
-
-            $em = $this->getDoctrine()->getManager();
-            $addressbook = $em->getRepository('AppBundle:AddressBook')->find($id);
-
-            $em->flush();
+            $record = $this->getDoctrine()->getRepository('AppBundle:AddressBook')->save($addressbook,$fileUploader,$file);
 
             $this->addFlash('notice','Address Book Record Updated !');
 
@@ -115,12 +88,7 @@ class AddressbookController extends Controller
      */
     public function deleteAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $addressbook = $em->getRepository('AppBundle:AddressBook')->find($id);
-
-        $em->remove($addressbook);
-        $em->flush();
-
+        $record = $this->getDoctrine()->getRepository('AppBundle:AddressBook')->delete($id);
         $this->addFlash('notice','Address Book Record Removed');
         return $this->redirectToRoute('addressbook_list');
     }
